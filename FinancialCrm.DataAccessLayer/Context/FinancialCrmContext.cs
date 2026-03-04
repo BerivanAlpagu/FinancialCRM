@@ -12,20 +12,30 @@ using Microsoft.Extensions.Configuration.UserSecrets; // Add this using directiv
 namespace FinancialCrm.DataAccessLayer.Context
 {
     public class FinancialCrmContext : DbContext
-    { 
+    {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Proje ayarlarını ve secrets dosyasını okuyoruz
-            // PostgreSQL bağlantı adresin. ANA KÖPRÜ BURASI
-            // Veritabanı ismini "FinancialCrmDb" olarak verebilirsin.
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath
-                (AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json")
-                .AddUserSecrets<FinancialCrmContext>() // Bilgiyi buradan çekecek
-                .Build();
+            if (!optionsBuilder.IsConfigured)
+            {
+                // 1. Ayarları inşa ediyoruz
+                var builder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    // 2. Burası çok kritik: Kendi sınıf adını buraya yazıyoruz
+                    .AddUserSecrets<FinancialCrmContext>()
+                    .Build();
 
-            optionsBuilder.UseNpgsql(configuration.GetConnectionString("FinancialCrmConnection"));
+                // 3. Bağlantı adını secrets içindekiyle eşleştiriyoruz
+                var connectionString = builder.GetConnectionString("FinancialCrmConnection");
+
+                // 4. Bağlantı boş mu kontrolü (Siyah ekran yerine burayı debug edebilirsin)
+                if (string.IsNullOrEmpty(connectionString))
+                {
+                    throw new Exception("HATA: Connection String okunamadı! Secrets dosyasını kontrol et.");
+                }
+
+                optionsBuilder.UseNpgsql(connectionString);
+            }
         }
 
         // PostreSql veritabanını küçük harflerle oluşturduğum için OnCreatingModel metodu ile düzeltiyorum.

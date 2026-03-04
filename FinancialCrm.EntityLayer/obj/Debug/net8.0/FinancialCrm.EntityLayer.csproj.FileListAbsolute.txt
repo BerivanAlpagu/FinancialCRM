@@ -11,3 +11,4 @@ C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Deb
 C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Debug\net8.0\FinancialCrm.EntityLayer.pdb
 C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Debug\net8.0\FinancialCrm.EntityLayer.genruntimeconfig.cache
 C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Debug\net8.0\ref\FinancialCrm.EntityLayer.dll
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Debug\net8.0\FinancialCrm.EntityLayer.sourcelink.json

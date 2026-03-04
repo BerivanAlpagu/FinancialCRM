@@ -58,6 +58,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Dashboard}/{action=Index}/{id?}"); // Home yerine Dashboard yazdýk
+    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
 
 app.Run();

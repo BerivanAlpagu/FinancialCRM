@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MyFinancialCrm.WebUI.Controllers
 {
-    [Authorize]
+    // [Authorize]
     public class DashboardController : Controller
     {
         private readonly IBankService _bankService;

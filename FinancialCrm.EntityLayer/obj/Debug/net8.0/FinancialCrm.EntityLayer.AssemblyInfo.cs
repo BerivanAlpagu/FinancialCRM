@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinancialCrm.EntityLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae65b5133d6c7240525b4d4957edaa5bf4e1d8d3")]
 [assembly: System.Reflection.AssemblyProductAttribute("FinancialCrm.EntityLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FinancialCrm.EntityLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

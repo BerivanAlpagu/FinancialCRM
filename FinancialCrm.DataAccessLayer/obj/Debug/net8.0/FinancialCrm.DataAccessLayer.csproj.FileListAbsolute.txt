@@ -15,3 +15,4 @@ C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj
 C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\FinancialCrm.DataAccessLayer.pdb
 C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\FinancialCrm.DataAccessLayer.genruntimeconfig.cache
 C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\ref\FinancialCrm.DataAccessLayer.dll
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\FinancialCrm.DataAccessLayer.sourcelink.json
