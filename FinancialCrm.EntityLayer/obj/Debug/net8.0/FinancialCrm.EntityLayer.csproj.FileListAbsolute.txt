@@ -1,0 +1,13 @@
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\bin\Debug\net8.0\FinancialCrm.EntityLayer.deps.json
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\bin\Debug\net8.0\FinancialCrm.EntityLayer.runtimeconfig.json
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\bin\Debug\net8.0\FinancialCrm.EntityLayer.dll
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\bin\Debug\net8.0\FinancialCrm.EntityLayer.pdb
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Debug\net8.0\FinancialCrm.EntityLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Debug\net8.0\FinancialCrm.EntityLayer.AssemblyInfoInputs.cache
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Debug\net8.0\FinancialCrm.EntityLayer.AssemblyInfo.cs
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Debug\net8.0\FinancialCrm.EntityLayer.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Debug\net8.0\FinancialCrm.EntityLayer.dll
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Debug\net8.0\refint\FinancialCrm.EntityLayer.dll
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Debug\net8.0\FinancialCrm.EntityLayer.pdb
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Debug\net8.0\FinancialCrm.EntityLayer.genruntimeconfig.cache
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.EntityLayer\obj\Debug\net8.0\ref\FinancialCrm.EntityLayer.dll

@@ -1,0 +1,70 @@
+﻿@model List<FinancialCrm.EntityLayer.Concrete.Bank>
+@{
+    ViewData["Title"] = "Bank Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">Add New Bank Account</div>
+                <div class="card-body">
+                    <form method="post" action="/Bank/CreateBank">
+                        <div class="mb-3">
+                            <label class="form-label">Bank Name</label>
+                            <input type="text" name="BankTitle" class="form-control" placeholder="e.g. Ziraat Bank" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Account Number</label>
+                            <input type="text" name="BankAccountNumber" class="form-control" placeholder="0000-0000" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Balance</label>
+                            <input type="number" name="BankBalance" class="form-control" placeholder="0.00" step="0.01" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Save Bank</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">My Bank Accounts</div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Bank</th>
+                                <th>Account No</th>
+                                <th>Balance</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.BankTitle</td>
+                                    <td>@item.BankAccountNumber</td>
+                                    <td>@item.BankBalance.ToString("C2")</td>
+                                    <td>
+                                        <a href="/Bank/UpdateBank/@item.BankId" class="btn btn-sm btn-outline-warning">
+                                            <i class="fa fa-edit"></i> Edit
+                                        </a>
+
+                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                                onclick="confirmDelete(@item.BankId, 'Bank')">
+                                            <i class="fa fa-trash"></i> Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+﻿@model List<FinancialCrm.EntityLayer.Concrete.Expend>
+@{
+    ViewData["Title"] = "Financial Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card bg-primary text-white shadow">
+            <div class="card-body">
+                <h5>Total Balance</h5>
+                <h2 class="fw-bold">@ViewBag.TotalBalance</h2>
+                <small>Updated from all bank accounts</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-warning text-dark shadow">
+            <div class="card-body">
+                <h5>Active Bills</h5>
+                <h2 class="fw-bold">@ViewBag.BillCount</h2>
+                <small>Pending payments in the system</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow">
+    <div class="card-header bg-dark text-white">Recent Expenditures</div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ExpendTitle</td>
+                        <td>@item.ExpendAmount.ToString("C2")</td>
+                        <td>@item.ExpendDate.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white">Bank Balance Distribution</div>
+            <div class="card-body">
+                <canvas id="myPieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Controller'dan gelen verileri JavaScript listelerine çeviriyoruz
+    var bankNames = @Html.Raw(Json.Serialize(ViewBag.BankNames));
+    var bankBalances = @Html.Raw(Json.Serialize(ViewBag.BankBalances));
+
+    var ctx = document.getElementById('myPieChart').getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: bankNames,
+            datasets: [{
+                data: bankBalances,
+                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b'],
+                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#dda20a', '#be2617'],
+                hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+</script>

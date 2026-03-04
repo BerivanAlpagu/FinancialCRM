@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dd24c5a1-9636-45e1-87a3-0fd1a9dec840</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.24">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FinancialCrm.BusinessLayer\FinancialCrm.BusinessLayer.csproj" />
+    <ProjectReference Include="..\FinancialCrm.DataAccessLayer\FinancialCrm.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\FinancialCrm.EntityLayer\FinancialCrm.EntityLayer.csproj" />
+  </ItemGroup>
+
+</Project>

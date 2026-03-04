@@ -1,0 +1,32 @@
+﻿@model FinancialCrm.EntityLayer.Concrete.Bank
+@{
+    ViewData["Title"] = "Update Bank Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card shadow">
+            <div class="card-header bg-warning text-dark">Update Bank Information</div>
+            <div class="card-body">
+                <form method="post">
+                    <input type="hidden" name="BankId" value="@Model.BankId" />
+
+                    <div class="mb-3">
+                        <label class="form-label">Bank Title</label>
+                        <input type="text" name="BankTitle" class="form-control" value="@Model.BankTitle" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Account Number</label>
+                        <input type="text" name="BankAccountNumber" class="form-control" value="@Model.BankAccountNumber" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Balance</label>
+                        <input type="number" name="BankBalance" class="form-control" value="@Model.BankBalance" step="0.01" required />
+                    </div>
+                    <button type="submit" class="btn btn-warning w-100">Update Bank Details</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

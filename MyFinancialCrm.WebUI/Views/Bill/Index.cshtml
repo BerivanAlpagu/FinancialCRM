@@ -1,0 +1,57 @@
+﻿@model List<FinancialCrm.EntityLayer.Concrete.Bill>
+@{
+    ViewData["Title"] = "Fatura Yönetimi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-danger text-white">Yeni Fatura Kaydı</div>
+            <div class="card-body">
+                <form method="post" action="/Bill/CreateBill">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <input type="text" name="BillTitle" class="form-control" placeholder="Fatura Başlığı (Örn: Elektrik)" required />
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" step="0.01" name="BillAmount" class="form-control" placeholder="Tutar" required />
+                        </div>
+                        <div class="col-md-3">
+                            <input type="month" name="BillPeriod" class="form-control" placeholder="Dönem (Örn: Mart 2026)" required />
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-danger w-100">Kaydet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <table class="table table-hover">
+             <thead class="table-dark">
+                 <tr>
+                            <th>#</th>
+                            <th>Fatura</th>
+                            <th>Tutar</th>
+                            <th>Dönem</th>
+                            <th>İşlemler</th>
+                 </tr>
+             </thead>
+             <tbody>
+                    @foreach (var item in Model)
+                    {
+                            <tr>
+                                <td>@item.BillId</td>
+                                <td>@item.BillTitle</td>
+                                <td>@item.BillAmount.ToString("C2")</td>
+                                <td>@item.BillPeriod</td>
+                                <td>
+                                    <a href="/Bill/DeleteBill/@item.BillId" class="btn btn-sm btn-outline-danger">Sil</a>
+                                </td>
+                            </tr>
+                     }
+             </tbody>
+        </table>
+    </div>
+</div>   

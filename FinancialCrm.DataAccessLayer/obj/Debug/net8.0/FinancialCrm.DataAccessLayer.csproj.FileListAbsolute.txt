@@ -1,0 +1,17 @@
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\bin\Debug\net8.0\FinancialCrm.DataAccessLayer.deps.json
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\bin\Debug\net8.0\FinancialCrm.DataAccessLayer.runtimeconfig.json
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\bin\Debug\net8.0\FinancialCrm.DataAccessLayer.dll
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\bin\Debug\net8.0\FinancialCrm.DataAccessLayer.pdb
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\bin\Debug\net8.0\FinancialCrm.EntityLayer.dll
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\bin\Debug\net8.0\FinancialCrm.EntityLayer.pdb
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\FinancialCrm.DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\FinancialCrm.DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\FinancialCrm.DataAccessLayer.AssemblyInfoInputs.cache
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\FinancialCrm.DataAccessLayer.AssemblyInfo.cs
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\FinancialCrm.DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\Financia.B360C2B0.Up2Date
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\FinancialCrm.DataAccessLayer.dll
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\refint\FinancialCrm.DataAccessLayer.dll
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\FinancialCrm.DataAccessLayer.pdb
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\FinancialCrm.DataAccessLayer.genruntimeconfig.cache
+C:\Users\ASUS\source\repos\MyFinancialCrm.WebUI\FinancialCrm.DataAccessLayer\obj\Debug\net8.0\ref\FinancialCrm.DataAccessLayer.dll
