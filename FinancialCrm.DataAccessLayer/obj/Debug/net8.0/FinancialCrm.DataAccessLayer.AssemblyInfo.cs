@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinancialCrm.DataAccessLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+24a09d1909ab9771369ec29ab28ac7ef523d6e3e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae65b5133d6c7240525b4d4957edaa5bf4e1d8d3")]
 [assembly: System.Reflection.AssemblyProductAttribute("FinancialCrm.DataAccessLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FinancialCrm.DataAccessLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
