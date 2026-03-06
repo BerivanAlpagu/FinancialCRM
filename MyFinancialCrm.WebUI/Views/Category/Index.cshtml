@@ -1,51 +1,272 @@
 ﻿@model List<FinancialCrm.EntityLayer.Concrete.Category>
 @{
-    ViewData["Title"] = "Category Management";
+    ViewData["Title"] = "Categories";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
-    <div class="col-12">
-        <div class="card shadow mb-4">
-            <div class="card-header bg-success text-white">Add New Category</div>
-            <div class="card-body">
-                <form method="post" action="/Category/CreateCategory">
-                    <div class="row g-3">
-                        <div class="col-md-9">
-                            <input type="text" name="CategoryName" class="form-control" placeholder="Category Name (e.g., Grocery, Education...)" required />
-                        </div>
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-success w-100">Create Category</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+<style>
+    .page-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 4px;
+    }
 
-        <div class="card shadow">
-            <div class="card-body">
-                <table class="table table-hover">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>#</th>
-                            <th>Category Name</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>@item.CategoryId</td>
-                                <td>@item.CategoryName</td>
-                                <td>
-                                    <a href="/Category/DeleteCategory/@item.CategoryId" class="btn btn-sm btn-outline-danger">Delete</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+    .page-sub {
+        font-size: 13px;
+        color: #8a96a8;
+        margin-bottom: 28px;
+    }
+
+    .add-bar {
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid #e8ecf2;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        padding: 20px 24px;
+        margin-bottom: 24px;
+    }
+
+    .add-bar-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #8a96a8;
+        margin-bottom: 14px;
+    }
+
+    .crm-input {
+        background: #f4f6fb;
+        border: 1.5px solid #e8ecf2;
+        border-radius: 10px;
+        padding: 11px 14px;
+        font-size: 13px;
+        color: #0f172a;
+        outline: none;
+        width: 100%;
+        font-family: 'DM Sans', sans-serif;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+        .crm-input:focus {
+            border-color: #0d9488;
+            box-shadow: 0 0 0 3px rgba(13,148,136,0.1);
+            background: #fff;
+        }
+
+        .crm-input::placeholder {
+            color: #c4cdd8;
+        }
+
+    .btn-create {
+        width: 100%;
+        padding: 11px 20px;
+        background: linear-gradient(135deg, #0d9488, #14b8a6);
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.2s, transform 0.15s;
+    }
+
+        .btn-create:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+
+    .crm-card {
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid #e8ecf2;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        overflow: hidden;
+    }
+
+    .crm-card-header {
+        padding: 18px 24px;
+        border-bottom: 1px solid #f1f5f9;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+        .crm-card-header .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+    .count-badge {
+        background: #f0fdfa;
+        color: #0d9488;
+        font-size: 11px;
+        font-weight: 700;
+        border-radius: 20px;
+        padding: 3px 12px;
+    }
+
+    .crm-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .crm-table thead th {
+            padding: 12px 24px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #8a96a8;
+            background: #f8fafc;
+            border-bottom: 1px solid #e8ecf2;
+        }
+
+        .crm-table tbody td {
+            padding: 14px 24px;
+            font-size: 13px;
+            color: #334155;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+
+        .crm-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .crm-table tbody tr:hover td {
+            background: #f8fafc;
+        }
+
+    .id-cell {
+        color: #c4cdd8;
+        font-size: 12px;
+        font-weight: 600;
+        width: 60px;
+    }
+
+    .cat-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        color: #0f172a;
+    }
+
+    .cat-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0d9488, #14b8a6);
+        flex-shrink: 0;
+    }
+
+    .btn-del {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        border-radius: 8px;
+        padding: 5px 13px;
+        font-size: 12px;
+        font-weight: 500;
+        border: 1.5px solid #fda4af;
+        color: #e11d48;
+        background: #fff1f2;
+        text-decoration: none;
+        font-family: 'DM Sans', sans-serif;
+        transition: background 0.15s;
+        cursor: pointer;
+    }
+
+        .btn-del:hover {
+            background: #ffe4e6;
+            color: #e11d48;
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 56px 24px;
+        color: #8a96a8;
+    }
+
+        .empty-state .icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+            opacity: 0.3;
+        }
+
+        .empty-state p {
+            font-size: 13px;
+        }
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<div class="page-title">Categories</div>
+<div class="page-sub">Organise your expenses with custom categories</div>
+
+<!-- Add Category -->
+<div class="add-bar">
+    <div class="add-bar-label">New Category</div>
+    <form method="post" action="/Category/CreateCategory">
+        <div class="row g-3 align-items-center">
+            <div class="col-md-9">
+                <input type="text" name="CategoryName" class="crm-input"
+                       placeholder="e.g. Grocery, Education, Transport…" required />
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn-create">+ Create Category</button>
             </div>
         </div>
+    </form>
+</div>
+
+<!-- Category Table -->
+<div class="crm-card">
+    <div class="crm-card-header">
+        <div class="title">All Categories</div>
+        <span class="count-badge">@Model.Count total</span>
     </div>
+    <table class="crm-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Category Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <td colspan="3">
+                        <div class="empty-state">
+                            <div class="icon">🏷</div>
+                            <p>No categories yet. Add your first one above.</p>
+                        </div>
+                    </td>
+                </tr>
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="id-cell">#@item.CategoryId</td>
+                    <td>
+                        <span class="cat-pill">
+                            <span class="cat-dot"></span>
+                            @item.CategoryName
+                        </span>
+                    </td>
+                    <td>
+                        <a href="/Category/DeleteCategory/@item.CategoryId" class="btn-del">🗑 Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

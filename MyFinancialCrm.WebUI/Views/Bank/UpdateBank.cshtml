@@ -4,29 +4,145 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
-    <div class="col-6 offset-3">
-        <div class="card shadow">
-            <div class="card-header bg-warning text-dark">Update Bank Information</div>
-            <div class="card-body">
-                <form method="post">
-                    <input type="hidden" name="BankId" value="@Model.BankId" />
+<style>
+    .page-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 4px;
+    }
 
-                    <div class="mb-3">
-                        <label class="form-label">Bank Title</label>
-                        <input type="text" name="BankTitle" class="form-control" value="@Model.BankTitle" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Account Number</label>
-                        <input type="text" name="BankAccountNumber" class="form-control" value="@Model.BankAccountNumber" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Balance</label>
-                        <input type="number" name="BankBalance" class="form-control" value="@Model.BankBalance" step="0.01" required />
-                    </div>
-                    <button type="submit" class="btn btn-warning w-100">Update Bank Details</button>
-                </form>
+    .page-sub {
+        font-size: 13px;
+        color: #94a3b8;
+        margin-bottom: 32px;
+    }
+
+    .crm-card {
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid #eef0f5;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        overflow: hidden;
+        max-width: 520px;
+        margin: 0 auto;
+    }
+
+    .crm-card-header {
+        padding: 20px 28px;
+        border-bottom: 1px solid #f1f5f9;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .header-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    }
+
+    .crm-card-header .title {
+        font-family: 'Playfair Display', serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #0f172a;
+    }
+
+    .crm-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #64748b;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .crm-input {
+        width: 100%;
+        background: #f8fafc;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 11px 14px;
+        font-size: 13px;
+        color: #0f172a;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        font-family: inherit;
+    }
+
+        .crm-input:focus {
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245,158,11,0.1);
+            background: #fff;
+        }
+
+    .btn-update {
+        width: 100%;
+        padding: 13px;
+        background: linear-gradient(135deg, #d97706, #f59e0b);
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        transition: opacity 0.2s, transform 0.15s;
+    }
+
+        .btn-update:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+    .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: #94a3b8;
+        text-decoration: none;
+        margin-bottom: 20px;
+        transition: color 0.2s;
+    }
+
+        .btn-back:hover {
+            color: #0f172a;
+        }
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<a href="/Bank/Index" class="btn-back">← Back to Banks</a>
+
+<div class="page-title">Update Account</div>
+<div class="page-sub">Edit the details for @Model.BankTitle</div>
+
+<div class="crm-card">
+    <div class="crm-card-header">
+        <div class="header-dot"></div>
+        <div class="title">Bank Information</div>
+    </div>
+    <div style="padding: 28px;">
+        <form method="post">
+            <input type="hidden" name="BankId" value="@Model.BankId" />
+            <div class="mb-3">
+                <label class="crm-label">Bank Title</label>
+                <input type="text" name="BankTitle" class="crm-input" value="@Model.BankTitle" required />
             </div>
-        </div>
+            <div class="mb-3">
+                <label class="crm-label">Account Number</label>
+                <input type="text" name="BankAccountNumber" class="crm-input" value="@Model.BankAccountNumber" required />
+            </div>
+            <div class="mb-4">
+                <label class="crm-label">Balance</label>
+                <input type="number" name="BankBalance" class="crm-input" value="@Model.BankBalance" step="0.01" required />
+            </div>
+            <button type="submit" class="btn-update">Update Account</button>
+        </form>
     </div>
 </div>

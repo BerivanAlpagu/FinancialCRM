@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FinancialCrm.WebUI.Controllers
 {
-    //[Authorize] // Şifrelemeyi buraya koyduk
+    [Authorize] // Şifrelemeyi buraya koyduk
     public class BankController : Controller
     {
         private readonly IBankService _bankService;

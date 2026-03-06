@@ -1,57 +1,235 @@
 ﻿@model List<FinancialCrm.EntityLayer.Concrete.Bill>
 @{
-    ViewData["Title"] = "Fatura Yönetimi";
+    ViewData["Title"] = "Bill Management";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
-    <div class="col-12">
-        <div class="card shadow mb-4">
-            <div class="card-header bg-danger text-white">Yeni Fatura Kaydı</div>
-            <div class="card-body">
-                <form method="post" action="/Bill/CreateBill">
-                    <div class="row g-3">
-                        <div class="col-md-4">
-                            <input type="text" name="BillTitle" class="form-control" placeholder="Fatura Başlığı (Örn: Elektrik)" required />
-                        </div>
-                        <div class="col-md-3">
-                            <input type="number" step="0.01" name="BillAmount" class="form-control" placeholder="Tutar" required />
-                        </div>
-                        <div class="col-md-3">
-                            <input type="month" name="BillPeriod" class="form-control" placeholder="Dönem (Örn: Mart 2026)" required />
-                        </div>
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-danger w-100">Kaydet</button>
-                        </div>
-                    </div>
-                </form>
+<style>
+    .page-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 4px;
+    }
+
+    .page-sub {
+        font-size: 13px;
+        color: #94a3b8;
+        margin-bottom: 28px;
+    }
+
+    .add-bar {
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid #eef0f5;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        padding: 20px 24px;
+        margin-bottom: 24px;
+    }
+
+    .add-bar-title {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #94a3b8;
+        margin-bottom: 14px;
+    }
+
+    .crm-input {
+        background: #f8fafc;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 11px 14px;
+        font-size: 13px;
+        color: #0f172a;
+        outline: none;
+        width: 100%;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        font-family: inherit;
+    }
+
+        .crm-input:focus {
+            border-color: #e11d48;
+            box-shadow: 0 0 0 3px rgba(225,29,72,0.08);
+            background: #fff;
+        }
+
+        .crm-input::placeholder {
+            color: #cbd5e1;
+        }
+
+    .btn-add {
+        width: 100%;
+        padding: 11px;
+        background: linear-gradient(135deg, #e11d48, #f43f5e);
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.2s, transform 0.15s;
+    }
+
+        .btn-add:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+    .crm-card {
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid #eef0f5;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        overflow: hidden;
+    }
+
+    .crm-card-header {
+        padding: 18px 24px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+        .crm-card-header .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+    .crm-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .crm-table thead th {
+            padding: 12px 24px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #94a3b8;
+            background: #f8fafc;
+            border-bottom: 1px solid #eef0f5;
+        }
+
+        .crm-table tbody td {
+            padding: 14px 24px;
+            font-size: 13px;
+            color: #334155;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+
+        .crm-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .crm-table tbody tr:hover td {
+            background: #f8fafc;
+        }
+
+    .bill-id {
+        color: #cbd5e1;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .bill-title {
+        font-weight: 600;
+        color: #0f172a;
+    }
+
+    .bill-amount {
+        font-weight: 700;
+        color: #e11d48;
+    }
+
+    .period-badge {
+        display: inline-block;
+        background: #f0fdfa;
+        color: #0d9488;
+        border-radius: 6px;
+        padding: 3px 10px;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    .btn-del {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        border-radius: 8px;
+        padding: 5px 12px;
+        font-size: 12px;
+        font-weight: 500;
+        border: 1.5px solid #fda4af;
+        color: #e11d48;
+        background: #fff1f2;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+
+        .btn-del:hover {
+            background: #ffe4e6;
+        }
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<div class="page-title">Bill Management</div>
+<div class="page-sub">Track and manage recurring bills</div>
+
+<!-- Add Bill Bar -->
+<div class="add-bar">
+    <div class="add-bar-title">New Bill Record</div>
+    <form method="post" action="/Bill/CreateBill">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <input type="text" name="BillTitle" class="crm-input" placeholder="Bill title (e.g. Electricity)" required />
+            </div>
+            <div class="col-md-3">
+                <input type="number" step="0.01" name="BillAmount" class="crm-input" placeholder="Amount" required />
+            </div>
+            <div class="col-md-3">
+                <input type="month" name="BillPeriod" class="crm-input" required />
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn-add">+ Save</button>
             </div>
         </div>
+    </form>
+</div>
 
-        <table class="table table-hover">
-             <thead class="table-dark">
-                 <tr>
-                            <th>#</th>
-                            <th>Fatura</th>
-                            <th>Tutar</th>
-                            <th>Dönem</th>
-                            <th>İşlemler</th>
-                 </tr>
-             </thead>
-             <tbody>
-                    @foreach (var item in Model)
-                    {
-                            <tr>
-                                <td>@item.BillId</td>
-                                <td>@item.BillTitle</td>
-                                <td>@item.BillAmount.ToString("C2")</td>
-                                <td>@item.BillPeriod</td>
-                                <td>
-                                    <a href="/Bill/DeleteBill/@item.BillId" class="btn btn-sm btn-outline-danger">Sil</a>
-                                </td>
-                            </tr>
-                     }
-             </tbody>
-        </table>
+<!-- Bill Table -->
+<div class="crm-card">
+    <div class="crm-card-header">
+        <div class="title">All Bills</div>
     </div>
-</div>   
+    <table class="crm-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Bill</th>
+                <th>Amount</th>
+                <th>Period</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="bill-id">#@item.BillId</td>
+                    <td class="bill-title">@item.BillTitle</td>
+                    <td class="bill-amount">@item.BillAmount.ToString("C2")</td>
+                    <td><span class="period-badge">@item.BillPeriod</span></td>
+                    <td>
+                        <a href="/Bill/DeleteBill/@item.BillId" class="btn-del">🗑 Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

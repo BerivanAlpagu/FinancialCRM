@@ -4,67 +4,251 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card shadow mb-4">
-                <div class="card-header bg-primary text-white">Add New Bank Account</div>
-                <div class="card-body">
-                    <form method="post" action="/Bank/CreateBank">
-                        <div class="mb-3">
-                            <label class="form-label">Bank Name</label>
-                            <input type="text" name="BankTitle" class="form-control" placeholder="e.g. Ziraat Bank" required />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Account Number</label>
-                            <input type="text" name="BankAccountNumber" class="form-control" placeholder="0000-0000" required />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Balance</label>
-                            <input type="number" name="BankBalance" class="form-control" placeholder="0.00" step="0.01" required />
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Save Bank</button>
-                    </form>
-                </div>
+<style>
+    .page-header {
+        margin-bottom: 28px;
+    }
+
+    .page-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 4px;
+    }
+
+    .page-sub {
+        font-size: 13px;
+        color: #94a3b8;
+    }
+
+    .crm-card {
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid #eef0f5;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        overflow: hidden;
+    }
+
+    .crm-card-header {
+        padding: 20px 28px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+        .crm-card-header .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+    /* Form */
+    .crm-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #64748b;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .crm-input {
+        width: 100%;
+        background: #f8fafc;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 11px 14px;
+        font-size: 13px;
+        color: #0f172a;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        font-family: inherit;
+    }
+
+        .crm-input:focus {
+            border-color: #0d9488;
+            box-shadow: 0 0 0 3px rgba(13,148,136,0.1);
+            background: #fff;
+        }
+
+        .crm-input::placeholder {
+            color: #cbd5e1;
+        }
+
+    .btn-crm-primary {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #0d9488, #14b8a6);
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        transition: opacity 0.2s, transform 0.15s;
+    }
+
+        .btn-crm-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+    /* Table */
+    .crm-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .crm-table thead th {
+            padding: 12px 24px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #94a3b8;
+            background: #f8fafc;
+            border-bottom: 1px solid #eef0f5;
+        }
+
+        .crm-table tbody td {
+            padding: 14px 24px;
+            font-size: 13px;
+            color: #334155;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+
+        .crm-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .crm-table tbody tr:hover td {
+            background: #f8fafc;
+        }
+
+    .bank-name-cell {
+        font-weight: 600;
+        color: #0f172a;
+    }
+
+    .acct-badge {
+        font-size: 12px;
+        color: #64748b;
+        background: #f1f5f9;
+        border-radius: 6px;
+        padding: 3px 10px;
+        font-family: 'DM Mono', monospace, monospace;
+    }
+
+    .balance-cell {
+        font-weight: 700;
+        color: #0d9488;
+    }
+
+    .btn-edit, .btn-del {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 12px;
+        font-weight: 500;
+        border: 1.5px solid;
+        cursor: pointer;
+        transition: background 0.15s;
+        text-decoration: none;
+    }
+
+    .btn-edit {
+        border-color: #f59e0b;
+        color: #d97706;
+        background: #fffbeb;
+    }
+
+        .btn-edit:hover {
+            background: #fef3c7;
+        }
+
+    .btn-del {
+        border-color: #fda4af;
+        color: #e11d48;
+        background: #fff1f2;
+    }
+
+        .btn-del:hover {
+            background: #ffe4e6;
+        }
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<div class="page-header">
+    <div class="page-title">Bank Accounts</div>
+    <div class="page-sub">Manage your linked bank accounts and balances</div>
+</div>
+
+<div class="row g-4">
+    <!-- Add Form -->
+    <div class="col-md-4">
+        <div class="crm-card">
+            <div class="crm-card-header">
+                <div class="title">Add New Account</div>
+            </div>
+            <div style="padding: 24px 28px;">
+                <form method="post" action="/Bank/CreateBank">
+                    <div class="mb-3">
+                        <label class="crm-label">Bank Name</label>
+                        <input type="text" name="BankTitle" class="crm-input" placeholder="e.g. Ziraat Bank" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="crm-label">Account Number</label>
+                        <input type="text" name="BankAccountNumber" class="crm-input" placeholder="0000-0000" required />
+                    </div>
+                    <div class="mb-4">
+                        <label class="crm-label">Balance</label>
+                        <input type="number" name="BankBalance" class="crm-input" placeholder="0.00" step="0.01" required />
+                    </div>
+                    <button type="submit" class="btn-crm-primary">Save Account</button>
+                </form>
             </div>
         </div>
+    </div>
 
-        <div class="col-md-8">
-            <div class="card shadow">
-                <div class="card-header bg-dark text-white">My Bank Accounts</div>
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Bank</th>
-                                <th>Account No</th>
-                                <th>Balance</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@item.BankTitle</td>
-                                    <td>@item.BankAccountNumber</td>
-                                    <td>@item.BankBalance.ToString("C2")</td>
-                                    <td>
-                                        <a href="/Bank/UpdateBank/@item.BankId" class="btn btn-sm btn-outline-warning">
-                                            <i class="fa fa-edit"></i> Edit
-                                        </a>
-
-                                        <button type="button" class="btn btn-sm btn-outline-danger"
-                                                onclick="confirmDelete(@item.BankId, 'Bank')">
-                                            <i class="fa fa-trash"></i> Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+    <!-- Table -->
+    <div class="col-md-8">
+        <div class="crm-card">
+            <div class="crm-card-header">
+                <div class="title">My Bank Accounts</div>
             </div>
+            <table class="crm-table">
+                <thead>
+                    <tr>
+                        <th>Bank</th>
+                        <th>Account No</th>
+                        <th>Balance</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="bank-name-cell">@item.BankTitle</td>
+                            <td><span class="acct-badge">@item.BankAccountNumber</span></td>
+                            <td class="balance-cell">@item.BankBalance.ToString("C2")</td>
+                            <td>
+                                <a href="/Bank/UpdateBank/@item.BankId" class="btn-edit">✏ Edit</a>
+                                <button type="button" class="btn-del ms-1"
+                                        onclick="confirmDelete(@item.BankId, 'Bank')">
+                                    🗑 Delete
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
